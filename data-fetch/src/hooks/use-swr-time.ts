@@ -1,22 +1,13 @@
 import useSWR from "swr";
-
-let fakeReqId = 0;
-
-const fakeFetcher = () => {
-    const id = ++fakeReqId;
-    console.log(`${id}: Fetching fake time`);
-    return new Promise(resolve => setTimeout(() => {
-        console.log(`${id}: Fetching fake time DONE`);
-        resolve(new Date().toLocaleString());
-    }, 500));
-};
+import fakeTimeFetcher from "../utils/fake-time-fetcher";
 
 function useSwrTime() {
-    const { data, error } = useSWR('fake-api:time', fakeFetcher)
+    const { data, error } = useSWR('fake-api:swr-time', fakeTimeFetcher);
     return {
         data: data as String,
         isLoading: !error && !data,
         isError: error
-    }
+    };
 }
+
 export default useSwrTime;

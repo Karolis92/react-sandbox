@@ -4,18 +4,17 @@ const SwrTime = () => {
     const { data: time } = useSwrTime();
     return (
         <>
-            <p>Time: {time} (Delayed)</p>
-            <p>
+            <p>Time: {time}</p>
+            <ul>
                 Notes:
-                <ul>
-                    <li>Shows old time whlie new is referched when changing route, refocus, etc.</li>
-                    <li>
-                        If delayed component calls useSwr within ~2-3s from App mount where same hook is used -
-                        it will not do 2 request and use data from firs response
-                    </li>
-                </ul>
-            </p>
-        </>);
+                <li>Shows old time while new is refetched when changing route, refocus, etc.</li>
+                <li>
+                    If delayed component calls useSwr within ~2-3s from App mount where same hook is used -
+                    it will not do 2 request and use data from first response
+                </li>
+            </ul>
+        </>
+    );
 };
 
 export default SwrTime;

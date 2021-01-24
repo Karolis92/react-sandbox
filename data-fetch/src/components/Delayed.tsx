@@ -6,7 +6,7 @@ const Delayed = (props: { delay?: number, children: ReactNode }) => {
     useEffect(() => {
         const timer = setTimeout(() => setShow(true), props.delay || 2000);
         return () => clearTimeout(timer);
-    }, []);
+    }, [props.delay]);
 
     return show ? <>{props.children}</> : <p>Wait for it...</p>;
 };
