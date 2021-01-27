@@ -5,7 +5,9 @@ const fakeTimeFetcher = (input: string) => {
     console.log(`${id}: Fetching fake time for ${input}`);
     return new Promise(resolve => setTimeout(() => {
         console.log(`${id}: Fetching fake time for ${input} DONE`);
-        resolve(new Date().toLocaleString());
+        var at = input.indexOf('@');
+        var timeZone = at > -1 ? input.substring(at + 1) : undefined;
+        resolve(new Date().toLocaleString(undefined, { timeZone }));
     }, 500));
 };
 
